@@ -1,26 +1,30 @@
 package frdomain.ch5
 package free
 
-import scalaz._
-import Scalaz._
+import java.util.{Calendar, Date}
 
-import java.util.{ Date, Calendar }
+import scalaz._
 
 object common {
   type Amount = BigDecimal
 
-  val today = Calendar.getInstance.getTime
+  val today: Date = Calendar.getInstance.getTime
 }
 
-import common._
+import frdomain.ch5.free.common._
 
 case class Balance(amount: Amount = 0)
 
-case class Account(no: String, name: String, dateOfOpening: Date = today, dateOfClosing: Option[Date] = None, 
-  balance: Balance = Balance(0))
+case class Account(
+                    no: String,
+                    name: String,
+                    dateOfOpening: Date = today,
+                    dateOfClosing: Option[Date] = None,
+                    balance: Balance = Balance(0)
+                  )
 
 object Account {
-  implicit val showAccount: Show[Account] = Show.shows { case a: Account => a.toString }
+  implicit val showAccount: Show[Account] = Show.showFromToString
 }
 
 

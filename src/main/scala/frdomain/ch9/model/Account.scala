@@ -2,10 +2,10 @@ package frdomain.ch9
 package domain
 package model
 
-import java.util.{ Date, Calendar }
-import util.{ Try, Success, Failure }
+import java.util.{Calendar, Date}
+
+import scalaz.Scalaz._
 import scalaz._
-import Scalaz._
 
 object common {
   type Amount = BigDecimal
@@ -13,7 +13,7 @@ object common {
   def today = Calendar.getInstance.getTime
 }
 
-import common._
+import frdomain.ch9.domain.model.common._
 
 case class Balance(amount: Amount = 0)
 
